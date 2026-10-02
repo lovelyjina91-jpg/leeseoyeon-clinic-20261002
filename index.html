@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- engfit-inapp-escape v3 : 카톡으로 열면 항상 폰의 인터넷 브라우저(크롬·사파리)로 열고 카톡 안의 창은 닫기 -->
+<script>
+(function () {
+  try {
+    var ua = navigator.userAgent || "";
+    var isIOS = /iphone|ipad|ipod/i.test(ua) || (/Macintosh/i.test(ua) && (navigator.maxTouchPoints || 0) > 1);
+    if (!(isIOS || /android/i.test(ua))) return;
+    var here = String(location.href || "");
+    var go = window.__engfitTestNav || function (u) { window.location.href = u; };
+    if (/KAKAOTALK/i.test(ua)) {
+      go("kakaotalk://web/openExternal?url=" + encodeURIComponent(here));
+      setTimeout(function () { go(isIOS ? "kakaoweb://closeBrowser" : "kakaotalk://inappbrowser/close"); }, 500);
+    } else if (/\bLine\//i.test(ua) && !/[?&]openExternalBrowser=1/.test(here)) {
+      go(here + (here.indexOf("?") >= 0 ? "&" : "?") + "openExternalBrowser=1");
+    }
+  } catch (e) {}
+})();
+</script>
+<!-- /engfit-inapp-escape v3 -->
+<meta name="robots" content="noindex">
+<title>서연이의 기초 탄탄 오답 클리닉 🌱</title>
+<style>
+  :root { color-scheme: light; }
+  .lv { display:inline-block; font-size:.72rem; font-weight:bold; padding:2px 8px; border-radius:10px; margin-right:6px; vertical-align:middle; }
+  .lv.b { background:#E6F1F1; color:#235E64; }
+  .lv.h { background:#FFF6E8; color:#9a5b12; border:1px solid #f0d3a8; }
+  .was { font-size:.75rem; color:#6B7B7E; vertical-align:middle; }
+  .cardbox .why { display:block; background:#FFF6E8; color:#2B3A3D; border:1.5px solid #f0d3a8; border-radius:10px; padding:11px 13px; margin:6px 0 12px; font-size:.93rem; line-height:1.9; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #f0f4f4; color: #2B3A3D; min-height: 100vh; display: flex; justify-content: center; padding: 20px 14px; padding-top: 54px; word-break: keep-all; overflow-wrap: break-word; }
+  .wrap { width: 100%; max-width: 560px; }
+  .card { background: #fff; color: #2B3A3D; border-radius: 16px; padding: 26px 22px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 14px; }
+  h1 { font-size: 1.25rem; color: #2F7C83; margin-bottom: 6px; line-height: 1.5; }
+  .sub { font-size: 0.9rem; color: #6B7B7E; margin-bottom: 18px; line-height: 1.8; }
+  .logo { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .logo .mark { width: 30px; height: 30px; border-radius: 9px; background: #2F7C83; color: #fff; font-size: 1rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+  .logo .name { font-size: 0.85rem; font-weight: bold; color: #235E64; letter-spacing: -0.2px; }
+  #sound-toggle { position: fixed; font-family: inherit; top: 12px; right: 12px; z-index: 50; padding: 8px 14px; font-size: 0.82rem; font-weight: bold; color: #235E64; background: #fff; border: 1.5px solid #DBE4E5; border-radius: 999px; cursor: pointer; box-shadow: 0 1px 5px rgba(0,0,0,0.07); }
+  input[type=text] { width: 100%; padding: 13px; font-size: 1.05rem; border: 1.5px solid #DBE4E5; border-radius: 10px; background: #fff; color: #2B3A3D; }
+  input[type=text]::placeholder { color: #9aa8a5; }
+  .btn { display: block; width: 100%; margin-top: 14px; padding: 14px; font-size: 1.05rem; font-family: inherit; font-weight: bold; color: #fff; background: #2F7C83; border: none; border-radius: 10px; cursor: pointer; text-align: left; line-height: 1.5; }
+  .btn:disabled { background: #b8c4c2; cursor: default; }
+  .btn.sub-btn { background: #8fa5a1; }
+  .btn.center { text-align: center; }
+  .progress { font-size: 0.85rem; color: #6B7B7E; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .srctag { display: inline-block; font-size: 0.75rem; color: #235E64; background: #E6F1F1; border-radius: 6px; padding: 2px 8px; margin-bottom: 10px; }
+  .bar { height: 6px; background: #e3ecea; border-radius: 3px; margin-bottom: 14px; overflow: hidden; }
+  .bar > div { height: 100%; background: #2F7C83; border-radius: 3px; width: 0; transition: width .25s; }
+  .cardbox { background: #fff8e6;  border: 1px solid #f2e2b3; border-radius: 12px; padding: 16px 16px; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.9; color: #4a4023; }
+  .cardbox h2 { font-size: 1.02rem; color: #a07800; margin-bottom: 10px; line-height: 1.5; }
+  .cardbox .ex { display: block; background: #fffdf6; border-left: 3px solid #e5cf8a; border-radius: 6px; padding: 9px 11px; margin: 9px 0; font-size: 0.93rem; line-height: 1.9; }
+  .cardbox b { color: #8a6400; }
+  details.tip { background: #fff8e6; border: 1px solid #f2e2b3; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.9rem; line-height: 1.85; color: #6b5a1e; }
+  details.tip summary { cursor: pointer; font-weight: bold; color: #a07800; font-size: 0.85rem; }
+  details.tip .inner { margin-top: 8px; }
+  .qtext { font-size: 1.06rem; line-height: 1.85; margin-bottom: 16px; }
+  .choice { display: block; width: 100%; text-align: left; padding: 13px 14px; margin-bottom: 9px; font-size: 1rem; font-family: inherit; color: #2B3A3D; background: #f6f9f8; border: 1.5px solid #DBE4E5; border-radius: 10px; cursor: pointer; line-height: 1.5; }
+  .choice:active { background: #E6F1F1; }
+  .num { color: #2F7C83; font-weight: bold; margin-right: 7px; }
+  .keyhint { font-size: 0.78rem; color: #9aa8a5; text-align: center; margin-top: 10px; }
+  .saybtn { display: block; width: 100%; margin-bottom: 12px; padding: 11px; font-size: 0.95rem; font-family: inherit; font-weight: bold; color: #235E64; background: #E6F1F1; border: 1.5px solid #cfe0dc; border-radius: 10px; cursor: pointer; }
+  .saybtn:active { background: #d6e8e8; }
+  .say { display: inline-block; margin-left: 8px; padding: 1px 6px; font-size: 0.95rem; border-radius: 7px; background: #E6F1F1; cursor: pointer; }
+  .wordrow { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .wordchip { font-size: 0.92rem; font-family: inherit; color: #235E64; background: #E6F1F1; border: 1.5px solid #cfe0dc; border-radius: 999px; padding: 7px 12px; cursor: pointer; line-height: 1.4; }
+  .wordchip:active { background: #d6e8e8; }
+  .wordhint { font-size: 0.82rem; color: #6B7B7E; margin-bottom: 8px; }
+  .score-big { font-size: 2rem; font-weight: bold; color: #2F7C83; text-align: center; margin: 10px 0; }
+  .exp { background: #f6f9f8; border-left: 4px solid #2F7C83; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.93rem; line-height: 1.8; }
+  .exp.wrong { border-left-color: #c0392b; background: #fdf5f4; }
+  .exp b { color: #235E64; }
+  .exp.wrong .exp-head b { color: #c0392b; }
+  .exp .ans-line { display: block; font-size: 0.85rem; color: #8a6b66; margin: 4px 0 6px; }
+  .btn .cnt { display: inline-block; font-size: 0.82rem; font-weight: normal; opacity: 0.85; margin-left: 4px; }
+  .btn.done { background: #cfe0dc; color: #4d6a64; }
+  .footer { text-align: center; font-size: 0.8rem; color: #9aa8a5; padding: 8px 0 24px; line-height: 1.7; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<button id="sound-toggle" type="button">🔊 소리 켜짐</button>
+<div class="wrap">
+
+  <!-- 시작 화면 -->
+  <div class="card" id="start-card">
+    <div class="logo"><div class="mark">영</div><div class="name">영핏 지나티처</div></div>
+    <h1>서연이의 기초 탄탄 오답 클리닉 🌱</h1>
+    <p class="sub">서연아, 10월 1일에 공부한 내용으로 만든 맞춤 클리닉이에요 🌱<br><b>리딩 Unit 7·8·9</b> (계절 · 태양 · 식물), <b>DAY 17 단어</b>, <b>듣기 04회 받아쓰기</b>를 기초부터 탄탄하게 다시 잡아요.<br><b>6개 영역 × 10문제</b> — 어느 영역부터 풀어도 괜찮아요 💪<br>영역마다 <b>💡 왜 틀렸을까? 카드</b>를 먼저 읽고 문제를 풀어요. 헷갈리면 문제 위의 <b>[개념 카드 다시 보기]</b>를 누르면 돼요.<br>🔊 <b>발음 듣기</b> 버튼을 누르면 <b>원어민 발음</b>이 나와요. 꼭 따라 읽어 보세요!<br>한 영역이 끝나면 결과를 복사해서 지나티처에게 카톡으로 보내주세요.<br>푼 기록은 자동 저장되니 중간에 꺼져도 이어서 할 수 있어요 😊<br>이름을 입력하고 시작하세요 🌱</p>
+    <input type="text" id="name-input" placeholder="이름을 입력하세요" maxlength="20" autocomplete="off">
+    <p class="sub" id="sec-pick-hint" style="margin:16px 0 -4px">👇 시작할 영역을 골라 주세요 (1영역부터 순서대로 푸는 걸 추천해요)</p>
+    <button class="btn sec-start" id="start-s1" data-sec="0" disabled>1영역 · Does ~? 대답은 does / doesn't 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s2" data-sec="1" disabled>2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises) 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s3" data-sec="2" disabled>3영역 · 비교급 taller vs 최상급 the tallest 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s4" data-sec="3" disabled>4영역 · 리딩 내용 확인 (계절 · 태양 · 식물) 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s5" data-sec="4" disabled>5영역 · DAY 17 단어 다시 잡기 시작 <span class="cnt">10문항</span></button>
+    <button class="btn sec-start sub-btn" id="start-s6" data-sec="5" disabled>6영역 · 받아쓰기 철자 (together · doctor · cousin) 시작 <span class="cnt">10문항</span></button>
+    <p class="keyhint" id="sec-done-note" style="margin-top:12px"></p>
+  </div>
+
+  <!-- 이어하기 화면 -->
+  <div class="card hidden" id="resume-card">
+    <div class="logo"><div class="mark">영</div><div class="name">영핏 지나티처</div></div>
+    <h1>이어서 풀 수 있어요! 🔄</h1>
+    <p class="sub" id="resume-info"></p>
+    <button class="btn center" id="resume-btn">이어서 하기</button>
+    <button class="btn sub-btn center" id="restart-btn">처음부터 다시 하기</button>
+  </div>
+
+  <!-- 개념 카드 화면 -->
+  <div class="card hidden" id="cards-card">
+    <div class="progress"><span id="card-num"></span><span id="card-sec"></span></div>
+    <div class="bar"><div id="card-bar"></div></div>
+    <div class="cardbox" id="cardbox"></div>
+    <p class="wordhint" id="word-hint">🔊 낱말을 누르면 원어민 발음이 나와요. 따라 읽어 보세요!</p>
+    <div class="wordrow" id="wordrow"></div>
+    <button class="btn center" id="card-next">카드 다 읽었어요! 문제 풀러 가기 →</button>
+    <button class="btn sub-btn center" id="card-skip">카드 건너뛰고 바로 문제 풀기</button>
+  </div>
+
+  <!-- 문제 화면 -->
+  <div class="card hidden" id="quiz-card">
+    <div class="progress"><span id="prog-num"></span><span id="prog-pct"></span></div>
+    <div class="bar"><div id="bar-fill"></div></div>
+    <span class="srctag" id="srctag"></span>
+    <details class="tip" id="tipbox"><summary>💡 개념 카드 다시 보기 (헷갈리면 눌러요)</summary><div class="inner" id="tipinner"></div></details>
+    <div class="qtext" id="qtext"></div>
+    <button class="saybtn" id="say-btn" type="button">🔊 발음 듣기 (다시 들으려면 또 눌러요)</button>
+    <div id="choices"></div>
+    <p class="keyhint" id="keyhint">숫자키 1~4로도 선택할 수 있어요</p>
+  </div>
+
+  <!-- 영역별 결과 화면 -->
+  <div class="card hidden" id="sec-result-card">
+    <div class="logo"><div class="mark">영</div><div class="name">영핏 지나티처</div></div>
+    <h1 id="sec-result-title"></h1>
+    <div class="score-big" id="sec-score"></div>
+    <p class="sub" id="sec-wrong" style="text-align:center"></p>
+    <button class="btn center" id="sec-copy-btn"></button>
+    <button class="btn center" id="next-sec-btn" style="background:#38699e"></button>
+    <button class="btn sub-btn center" id="pick-sec-btn">다른 영역 고르기 →</button>
+    <div id="total-block" class="hidden" style="margin-top:22px; border-top:2px dashed #DBE4E5; padding-top:18px">
+      <p class="sub" style="text-align:center; margin-bottom:4px">🏆 전체 최종 결과</p>
+      <div class="score-big" id="total-score"></div>
+      <p class="sub" id="total-detail" style="text-align:center"></p>
+      <button class="btn center" id="total-copy-btn">전체 결과 복사 (카톡용)</button>
+    </div>
+    <div style="margin-top:20px">
+      <p class="sub" style="margin-bottom:10px">📝 이 영역 해설 — 틀린 문제 위주로 꼭 읽어보세요!</p>
+      <div id="sec-explanations"></div>
+    </div>
+  </div>
+
+  <div class="footer">영핏 지나티처 · 하나씩 차근차근, 서연이 화이팅 🌱</div>
+</div>
+
+<script>
+"use strict";
+
+/* ══════ 결과 기록 (영핏 공통) ══════ */
+var ENGFIT_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbz5IC3cEtaBGW10qZhrjwtjdtGugmcmYb4ZTHS4k-1LOqTRYzW-LfoAPyFB_ShjAqNp/exec";
+async function engfitSubmit(r) {
+  var body = JSON.stringify(r);
+  try {
+    var res = await fetch(ENGFIT_SUBMIT_URL, { method: "POST", body: body });
+    var j = await res.json();
+    return j.ok === true;
+  } catch (e) {
+    try {
+      await fetch(ENGFIT_SUBMIT_URL, { method: "POST", mode: "no-cors", body: body });
+      return true;
+    } catch (e2) { return false; }
+  }
+}
+
+/* ══════ 원어민 발음 듣기 (브라우저 내장 음성) + 영역 완료 팡파르 ══════ */
+var SOUND_KEY = "engfit-sound";
+var soundOn = true;
+try { soundOn = localStorage.getItem(SOUND_KEY) !== "off"; } catch (e) {}
+var audioCtx = null;
+function ensureCtx() {
+  try {
+    if (!audioCtx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      audioCtx = new AC();
+    }
+    if (audioCtx.state === "suspended" && audioCtx.resume) audioCtx.resume();
+    return audioCtx;
+  } catch (e) { return null; }
+}
+function tone(freq, startAt, dur, peak) {
+  try {
+    var ctx = audioCtx;
+    if (!ctx) return;
+    var o = ctx.createOscillator();
+    var g = ctx.createGain();
+    o.type = "sine";
+    o.frequency.value = freq;
+    var t0 = ctx.currentTime + startAt;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(peak, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(t0); o.stop(t0 + dur + 0.02);
+  } catch (e) {}
+}
+/* 원어민 발음 (Web Speech API · 외부 파일 없음) */
+var speechOK = (typeof window.speechSynthesis !== "undefined" && typeof window.SpeechSynthesisUtterance !== "undefined");
+var enVoice = null;
+/* 미국 여성 목소리만 사용 (en-US + 여성 이름 우선, 남성 목소리 제외) */
+var FEMALE_US = ["google us english", "zira", "aria", "jenny", "michelle", "ava", "samantha", "allison", "susan", "joanna", "salli", "kimberly", "nanci", "emma", "eva", "female"];
+var MALE_ANY = ["david", "mark", "guy", "alex", "fred", "eric", "christopher", "roger", "steffan", "tony", "brandon", "daniel", "james", "male"];
+function isMaleName(n) {
+  n = (n || "").toLowerCase();
+  for (var i = 0; i < MALE_ANY.length; i++) { if (n.indexOf(MALE_ANY[i]) !== -1) return true; }
+  return false;
+}
+function femaleRank(n) {
+  n = (n || "").toLowerCase();
+  for (var i = 0; i < FEMALE_US.length; i++) { if (n.indexOf(FEMALE_US[i]) !== -1) return i; }
+  return 999;
+}
+function pickVoice() {
+  try {
+    var vs = window.speechSynthesis.getVoices() || [];
+    var us = [], en = [];
+    for (var i = 0; i < vs.length; i++) {
+      var lang = (vs[i].lang || "").replace("_", "-");
+      if (/^en-US/i.test(lang)) us.push(vs[i]);
+      else if (/^en/i.test(lang)) en.push(vs[i]);
+    }
+    function best(list) {
+      var pool = list.filter(function (v) { return !isMaleName(v.name); });
+      if (!pool.length) pool = list;
+      pool = pool.slice().sort(function (a, b) { return femaleRank(a.name) - femaleRank(b.name); });
+      return pool.length ? pool[0] : null;
+    }
+    enVoice = best(us) || best(en) || null;
+  } catch (e) { enVoice = null; }
+}
+var pendingSay = null;
+function onVoicesReady() {
+  pickVoice();
+  if (enVoice && pendingSay) { var t = pendingSay; pendingSay = null; speak(t); }
+}
+if (speechOK) {
+  pickVoice();
+  try { window.speechSynthesis.onvoiceschanged = onVoicesReady; } catch (e) {}
+  /* 크롬은 목소리 목록이 늦게 로딩됨 — 준비될 때까지 폴링 (준비 전엔 한국어 기본 목소리로 읽히는 사고 방지) */
+  var voiceTries = 0;
+  var voiceTimer = setInterval(function () {
+    voiceTries++;
+    if (!enVoice) onVoicesReady();
+    if (enVoice || voiceTries > 60) clearInterval(voiceTimer);
+  }, 250);
+}
+function stripTags(s) { return String(s).replace(/<[^>]*>/g, "").replace(/[（(]\s*[）)]/g, " ").trim(); }
+function isEnglish(s) { var t = stripTags(s); return /[A-Za-z]/.test(t) && !/[\uAC00-\uD7A3]/.test(t); }
+function speak(text, rate) {
+  if (!soundOn || !speechOK) return;
+  var t = stripTags(text);
+  if (!t) return;
+  try {
+    if (!enVoice) pickVoice();
+    if (!enVoice || !/^en/i.test((enVoice.lang || "").replace("_", "-"))) {
+      /* 영어 목소리가 아직 없으면 저장만 해 두고, 준비되면 그때 읽어 준다 (한국어 목소리로 읽히는 것 방지) */
+      pendingSay = t;
+      return;
+    }
+    window.speechSynthesis.cancel();
+    var u = new window.SpeechSynthesisUtterance(t);
+    u.lang = "en-US";
+    if (enVoice) u.voice = enVoice;
+    u.rate = rate || 0.85;
+    u.pitch = 1;
+    window.speechSynthesis.speak(u);
+  } catch (e) {}
+}
+function stopSpeak() { try { if (speechOK) window.speechSynthesis.cancel(); } catch (e) {} }
+function playFanfare() {
+  if (!soundOn || !ensureCtx()) return;
+  tone(523.25, 0, 0.16, 0.15); tone(659.25, 0.12, 0.16, 0.15);
+  tone(784, 0.24, 0.16, 0.15); tone(1046.5, 0.36, 0.40, 0.18);
+}
+var soundBtn = document.getElementById("sound-toggle");
+function paintSoundBtn() { soundBtn.textContent = soundOn ? "🔊 소리 켜짐" : "🔇 소리 꺼짐"; }
+soundBtn.addEventListener("click", function () {
+  soundOn = !soundOn;
+  try { localStorage.setItem(SOUND_KEY, soundOn ? "on" : "off"); } catch (e) {}
+  paintSoundBtn();
+  if (soundOn) { ensureCtx(); speak("Hello", 0.9); } else { stopSpeak(); }
+});
+paintSoundBtn();
+
+/* ══════ 오답 이유 + 개념 카드 6장 ══════ */
+var CT = ["1영역 · Does ~? 대답은 does / doesn't", "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "3영역 · 비교급 taller vs 최상급 the tallest", "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "5영역 · DAY 17 단어 다시 잡기", "6영역 · 받아쓰기 철자 (together · doctor · cousin)"];
+var TIPS = {};
+var WORDS = {};
+TIPS[CT[0]] = "<div class='why'><b>🤔 왜 틀렸을까?</b><br>지난번 Unit 7 · Unit 8 <b>Grammar Check B 4문제</b>에서 모두 <b>is</b> 로 대답했어요.<br>· Does the sun rise in the morning? — Yes, it <s>is</s> → <b>does</b><br>· Does the sun set in the morning? — No, it <s>is</s> → <b>doesn't</b><br>· Does the weather get warmer in spring? — Yes, it <s>is</s> → <b>does</b><br>· Does the weather get hotter in fall? — No, it <s>isn't</s> → <b>doesn't</b><br>⭐ 같은 실수가 <b>두 단원에서 4번</b> 나왔어요. 규칙 하나만 알면 4개가 한꺼번에 해결돼요!<br><b>📌 규칙: 질문의 첫 낱말을 대답에 그대로 돌려줘요</b><br>· <b>Does</b> ~? → Yes, it <b>does</b>. / No, it <b>doesn't</b>.<br>· <b>Is</b> ~? → Yes, it <b>is</b>. / No, it <b>isn't</b>.<br>· <b>Do</b> you ~? → Yes, I <b>do</b>. / No, I <b>don't</b>.<br>· <b>Are</b> you ~? → Yes, I <b>am</b>. / No, I'm <b>not</b>.</div><span class='tipline'>💡 대답하기 전에 질문 맨 앞 낱말에 동그라미! Does 면 does, Is 면 is</span>";
+WORDS[CT[0]] = ["Does the sun rise in the morning?", "Yes, it does.", "No, it doesn't.", "Is the sun a star?", "Yes, it is.", "Do you like fall?", "Yes, I do."];
+TIPS[CT[1]] = "<div class='why'><b>🤔 왜 틀렸을까?</b><br>지난번 Unit 7 <b>Grammar Check A</b>에서 the weather <s>get</s> warmer, the weather <s>get</s> cooler 라고 썼어요.<br>그런데 Unit 8 에서는 The sun <b>rises</b>, The sun <b>sets</b> 를 정확하게 골랐어요 👍 — 서연이는 이미 알고 있는 규칙이에요!<br><b>📌 규칙: 주어가 '혼자'(he · she · it · the sun · the weather)면 동사에 -s</b><br>· The weather <b>gets</b> warmer. 날씨가 더 따뜻해져요.<br>· The sun <b>rises</b> in the morning. 해가 아침에 떠요.<br>· Spring <b>comes</b> first. 봄이 먼저 와요.<br>· 여럿(we · they · leaves · plants)이면 -s 없이 → Leaves <b>fall</b> from trees.<br>· <b>Does</b> 뒤에는 원래 모양! → Does the weather <b>get</b> warmer? (gets ✗)<br>⭐ go → <b>goes</b> · watch → <b>watches</b> 처럼 -es 가 붙는 낱말도 있어요.</div><span class='tipline'>💡 주어를 먼저 찾고 '혼자야? 여럿이야?' 물어보기</span>";
+WORDS[CT[1]] = ["The weather gets warmer.", "The sun rises in the morning.", "The sun sets at night.", "Spring comes first.", "Leaves fall from trees.", "Every year, the story goes on."];
+TIPS[CT[2]] = "<div class='why'><b>🤔 왜 틀렸을까?</b><br>지난번 Unit 9 <b>Comprehension C</b> 두 문제가 서로 바뀌었어요.<br>· The redwood tree is <s>tallest</s> → <b>taller</b> than the Statue of Liberty.<br>· Bamboo is the <s>taller</s> → <b>tallest</b> grass in the world.<br>⭐ 9월 17일 클리닉에서도 똑같이 바뀌었던 문제예요. 이번에 <b>신호 낱말</b>로 확실히 잡아요!<br><b>📌 신호 낱말 보고 고르기</b><br>· 뒤에 <b>than</b>(~보다) → 둘 비교 → <b>-er</b> : taller than · bigger than<br>· 앞에 <b>the</b>, 뒤에 <b>in the world</b> · <b>of all</b> → 제일 → <b>-est</b> : the tallest<br>· 철자 : big → bi<b>gg</b>er → bi<b>gg</b>est · hot → ho<b>tt</b>er · warm → warmer</div><span class='tipline'>💡 than 이 보이면 -er, the ~ in the world 가 보이면 the -est</span>";
+WORDS[CT[2]] = ["taller than", "the tallest tree in the world", "bigger than", "the biggest flower", "The redwood tree is taller than the Statue of Liberty.", "Bamboo is the tallest grass in the world."];
+TIPS[CT[3]] = "<div class='why'><b>🤔 왜 틀렸을까?</b><br>세 이야기의 핵심 내용을 다시 정리해요.<br><b>🌸 Unit 7 The Story of the Year</b><br>· 봄 → 여름 → 가을 → 겨울 순서. 봄에 식물이 <b>sprout</b>(싹이 나다), 가을에 leaves <b>fall</b>(떨어지다)<br>· 겨울은 <b>가을 다음</b>에 와요 → 'Winter is the season after summer' 는 <b>False</b><br><b>☀️ Unit 8 The Sun</b><br>· The sun is <b>a star</b>. 해는 별이에요. 지구와 <b>close</b>(가까워서) 커 보여요.<br>· 다른 별들은 <b>far away</b>(멀리) 있어서 작아 보여요. (for aways ✗ → far away)<br>· 밤에는 해가 지구의 <b>다른 쪽</b>을 비춰요. 해가 아니라 <b>지구가 움직여요</b>.<br><b>🌳 Unit 9 Amazing Plants</b><br>· redwood 는 세계에서 <b>가장 큰 나무</b>(100미터까지) · bamboo 는 <b>가장 큰 풀</b> → True!<br>· rafflesia 는 세계에서 <b>가장 큰 꽃</b><br>⭐ True/False 는 지문의 그 문장을 다시 찾아서 낱말 하나하나 비교해요.</div><span class='tipline'>💡 느낌으로 고르지 말고 지문에서 증거 문장을 찾기</span>";
+WORDS[CT[3]] = ["sprout", "Leaves fall from trees.", "The sun is a star.", "far away", "close to Earth", "Bamboo is the world's tallest grass."];
+TIPS[CT[4]] = "<div class='why'><b>🤔 왜 틀렸을까?</b><br>DAY 17 은 <b>1~28번 전부 정답</b>! 👏 마지막 영작 칸에서만 막혔어요.<br>· <b>run out</b> 다 되다, 다 떨어지다 · <b>fry</b> 튀기다, 볶다<br>· <b>abroad</b> 해외에, 해외로 · <b>get to</b> ~에 도착하다<br>· <b>tax</b> 세금 (tox ✗ — 가운데는 <b>a</b>)<br>· <b>straight</b> 똑바로, 곧장 (gh 가 숨어 있어요!)<br>· <b>greenhouse</b> 온실 = green + house<br>· <b>either</b> 어느 한 쪽, ~도 또한 · <b>helpful</b> 도움이 되는 = help + ful<br>⭐ 뜻을 보고 영어를 떠올리는 연습을 하면 영작 칸도 다 맞을 수 있어요!</div><span class='tipline'>💡 낱말 칩을 눌러 듣고 → 따라 말하고 → 철자 한 번 손으로 써 보기</span>";
+WORDS[CT[4]] = ["run out", "fry", "abroad", "get to", "tax", "straight", "greenhouse", "either", "helpful"];
+TIPS[CT[5]] = "<div class='why'><b>🤔 왜 틀렸을까?</b><br>듣기 04회 받아쓰기에서 <b>소리는 들었는데 글자가 하나씩 빠진</b> 낱말이 많았어요.<br>· <b>together</b> (togeter ✗) — 지난번에도 h 를 빠뜨렸어요! to + ge + <b>th</b> + er<br>· <b>doctor</b> (docter ✗) — 끝은 -<b>or</b> · <b>cousin</b> (cousing ✗) — 끝에 g 없음<br>· <b>strawberry</b> (strawbrry ✗) — berr<b>y</b> 앞에 e · <b>horse</b> (hourse ✗)<br>· <b>borrow</b> 빌리다 (borran ✗) · <b>near</b> 가까이 (hear 듣다 ✗)<br>· <b>leaf</b> 하나 → <b>leaves</b> 여럿 (beautiful leaves)<br>· <b>everyone's</b> = everyone is · <b>grocery</b> 식료품 · <b>badminton</b> 배드민턴<br>⭐ 받아쓰기 다 한 뒤 소리 내어 읽으며 <b>빠진 글자</b>를 찾아요!</div><span class='tipline'>💡 together = to-get-her 세 조각으로 기억해요</span>";
+WORDS[CT[5]] = ["together", "doctor", "cousin", "strawberry", "horse", "borrow", "near", "leaves", "grocery", "badminton"];
+
+/* ══════ 문제 60문항 (6영역 × 10문항) ══════ */
+var ALL = [
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Does the sun rise in the morning? — Yes, it (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>해는 아침에 뜨니? — 응, 그래.</span>", "choices": ["does", "is", "do", "rises"], "answer": "does", "say": "Does the sun rise in the morning? Yes, it does.", "spk": true, "exp": "정답은 <b>does</b><br>질문이 <b>Does</b> 로 시작했으니 대답도 <b>does</b> 예요. 지난 시험 Unit 8 B-1 유형이에요.<br>· <b>is</b> ❌ — Is ~? 질문일 때 쓰는 대답이에요<br>· <b>do</b> ❌ — it 은 혼자라서 do 가 아니라 does<br>· <b>rises</b> ❌ — 대답 자리에는 일반 동사를 다시 쓰지 않아요<br>💡 Does → does"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Does the sun set in the morning? — No, it (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>해는 아침에 지니? — 아니, 안 그래.</span>", "choices": ["doesn't", "isn't", "don't", "not"], "answer": "doesn't", "say": "Does the sun set in the morning? No, it doesn't.", "spk": true, "exp": "정답은 <b>doesn't</b><br>Does 질문의 '아니'는 <b>doesn't</b> 예요. 지난 시험 Unit 8 B-2 유형이에요.<br>· <b>isn't</b> ❌ — Is ~? 질문의 대답이에요<br>· <b>don't</b> ❌ — it 뒤에는 doesn't<br>· <b>not</b> ❌ — not 만으로는 대답이 안 돼요<br>💡 Does → doesn't"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Does the weather get warmer in spring? — Yes, it (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>봄에는 날씨가 더 따뜻해지니? — 응, 그래.</span>", "choices": ["does", "is", "gets", "are"], "answer": "does", "say": "Does the weather get warmer in spring? Yes, it does.", "spk": true, "exp": "정답은 <b>does</b><br>Does 로 물었으니 <b>does</b>! 지난 시험 Unit 7 B-1 유형이에요.<br>· <b>is</b> ❌ — Is 로 물은 게 아니에요<br>· <b>gets</b> ❌ — 대답에는 does 만 써요<br>· <b>are</b> ❌ — it 과 are 는 짝이 아니에요<br>💡 봄 → 따뜻해져요 🌸"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Does the weather get hotter in fall? — No, it (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>가을에는 날씨가 더 더워지니? — 아니, 안 그래.</span>", "choices": ["doesn't", "isn't", "don't", "aren't"], "answer": "doesn't", "say": "Does the weather get hotter in fall? No, it doesn't.", "spk": true, "exp": "정답은 <b>doesn't</b><br>가을엔 더 시원해지니까 '아니' → <b>doesn't</b>. 지난 시험 Unit 7 B-2 유형이에요.<br>· <b>isn't</b> ❌ — Is 질문의 대답이에요 — 지난번에 쓴 답이에요<br>· <b>don't</b> ❌ — it 은 혼자라 don't 가 아니에요<br>· <b>aren't</b> ❌ — it 과 aren't 는 짝이 아니에요<br>💡 가을은 더 시원해져요 🍂"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Is the sun a star? — Yes, it (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>해는 별이니? — 응, 그래.</span>", "choices": ["is", "does", "do", "are"], "answer": "is", "say": "Is the sun a star? Yes, it is.", "spk": true, "exp": "정답은 <b>is</b><br>이번엔 <b>Is</b> 로 물었으니 대답도 <b>is</b>! 질문 첫 낱말을 꼭 보세요.<br>· <b>does</b> ❌ — Does 질문일 때 쓰는 대답이에요<br>· <b>do</b> ❌ — Do 질문의 대답이에요<br>· <b>are</b> ❌ — it 과 are 는 짝이 아니에요<br>💡 Is → is · Does → does"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Do you like fall? — Yes, I (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>너는 가을을 좋아하니? — 응, 좋아해.</span>", "choices": ["do", "does", "am", "is"], "answer": "do", "say": "Do you like fall? Yes, I do.", "spk": true, "exp": "정답은 <b>do</b><br><b>Do</b> you ~? → Yes, I <b>do</b>.<br>· <b>does</b> ❌ — I 와 does 는 짝이 아니에요<br>· <b>am</b> ❌ — Are you ~? 의 대답이에요<br>· <b>is</b> ❌ — I 와 is 는 짝이 아니에요<br>💡 Do → do"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv h\">심화</span><br>질문과 대답이 <b>바르게</b> 짝지어진 것을 고르세요.", "choices": ["Does the moon shine at night? — Yes, it does.", "Does the moon shine at night? — Yes, it is.", "Is the moon round? — Yes, it does.", "Does the moon move? — No, it isn't."], "answer": "Does the moon shine at night? — Yes, it does.", "say": "Does the moon shine at night? Yes, it does.", "spk": false, "exp": "정답은 <b>Does the moon shine at night? — Yes, it does.</b><br>Does 질문 → does 대답. 짝이 딱 맞아요.<br>· <b>Does the moon shine at night? — Yes, it is.</b> ❌ — Does 질문에 is 로 대답했어요<br>· <b>Is the moon round? — Yes, it does.</b> ❌ — Is 질문에 does 로 대답했어요<br>· <b>Does the moon move? — No, it isn't.</b> ❌ — Does 질문의 '아니'는 doesn't<br>💡 질문 첫 낱말 = 대답 낱말"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>(　　) leaves fall from trees in fall? — Yes, they do.</b><br><span style='font-size:.88rem;color:#6B7B7E'>가을에 나뭇잎이 나무에서 떨어지니? — 응, 그래.</span>", "choices": ["Do", "Does", "Is", "Are"], "answer": "Do", "say": "Do leaves fall from trees in fall? Yes, they do.", "spk": true, "exp": "정답은 <b>Do</b><br>leaves 는 여럿(they)이라서 <b>Do</b> 로 물어요. 대답 they <b>do</b> 를 보고 거꾸로 찾아도 돼요.<br>· <b>Does</b> ❌ — 여럿(leaves) 앞에는 Do<br>· <b>Is</b> ❌ — 뒤에 fall 같은 동사가 있으면 Is 를 쓰지 않아요<br>· <b>Are</b> ❌ — 뒤에 fall 같은 동사가 있으면 Are 를 쓰지 않아요<br>💡 여럿 → Do · 혼자 → Does"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Does winter come after summer? — No, it (　　). Fall comes after summer.</b><br><span style='font-size:.88rem;color:#6B7B7E'>겨울이 여름 다음에 오니? — 아니. 여름 다음엔 가을이 와.</span>", "choices": ["doesn't", "does", "isn't", "don't"], "answer": "doesn't", "say": "Does winter come after summer? No, it doesn't.", "spk": true, "exp": "정답은 <b>doesn't</b><br>여름 다음은 가을이니까 '아니' → <b>doesn't</b>. 리딩 내용과 문법을 함께 확인하는 문제예요.<br>· <b>does</b> ❌ — '응'이라는 뜻이라 내용과 안 맞아요<br>· <b>isn't</b> ❌ — Does 질문에는 isn't 를 쓰지 않아요<br>· <b>don't</b> ❌ — it 은 혼자라 don't 가 아니에요<br>💡 봄→여름→가을→겨울"},
+{"src": "1영역 · Does ~? 대답은 does / doesn't", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Does the redwood tree grow tall? — Yes, it (　　). It can grow 100 meters tall.</b><br><span style='font-size:.88rem;color:#6B7B7E'>레드우드는 키가 크게 자라니? — 응. 100미터까지 자랄 수 있어.</span>", "choices": ["does", "is", "grows", "can"], "answer": "does", "say": "Does the redwood tree grow tall? Yes, it does.", "spk": true, "exp": "정답은 <b>does</b><br>Does 질문이니까 <b>does</b>!<br>· <b>is</b> ❌ — Is 질문의 대답이에요<br>· <b>grows</b> ❌ — 대답에는 동사를 다시 쓰지 않아요<br>· <b>can</b> ❌ — Can ~? 질문일 때 쓰는 대답이에요<br>💡 Does → does 🌳"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>In spring, the weather (　　) warmer.</b><br><span style='font-size:.88rem;color:#6B7B7E'>봄에는 날씨가 더 따뜻해져요.</span>", "choices": ["gets", "get", "getting", "to get"], "answer": "gets", "say": "In spring, the weather gets warmer.", "spk": true, "exp": "정답은 <b>gets</b><br>the weather 는 혼자(it)라서 <b>gets</b>. 지난 시험 Unit 7 A-1 유형이에요.<br>· <b>get</b> ❌ — 혼자인 주어 뒤에는 -s 를 붙여요 — 지난번에 쓴 답이에요<br>· <b>getting</b> ❌ — is 없이 -ing 만 쓸 수 없어요<br>· <b>to get</b> ❌ — to get 은 동사 자리에 못 와요<br>💡 the weather → gets ☀️"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>In fall, the weather (　　) cooler.</b><br><span style='font-size:.88rem;color:#6B7B7E'>가을에는 날씨가 더 시원해져요.</span>", "choices": ["gets", "get", "is get", "getted"], "answer": "gets", "say": "In fall, the weather gets cooler.", "spk": true, "exp": "정답은 <b>gets</b><br>the weather + <b>gets</b>. 지난 시험 Unit 7 A-2 유형이에요.<br>· <b>get</b> ❌ — -s 가 빠졌어요<br>· <b>is get</b> ❌ — is 와 get 을 같이 쓰지 않아요<br>· <b>getted</b> ❌ — 이런 모양은 없어요<br>💡 the weather gets cooler 🍂"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>The sun (　　) in the morning.</b><br><span style='font-size:.88rem;color:#6B7B7E'>해는 아침에 떠요.</span>", "choices": ["rises", "rise", "rising", "rised"], "answer": "rises", "say": "The sun rises in the morning.", "spk": true, "exp": "정답은 <b>rises</b><br>the sun 은 혼자라서 <b>rises</b>. 서연이가 지난번에 잘 맞힌 문제예요 👍<br>· <b>rise</b> ❌ — -s 가 빠졌어요<br>· <b>rising</b> ❌ — is 없이 -ing 만 쓸 수 없어요<br>· <b>rised</b> ❌ — 매일 일어나는 일은 지금 모양(rises)으로 써요<br>💡 The sun rises 🌅"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>The sun (　　) at night.</b><br><span style='font-size:.88rem;color:#6B7B7E'>해는 밤에 져요.</span>", "choices": ["sets", "set", "setting", "to set"], "answer": "sets", "say": "The sun sets at night.", "spk": true, "exp": "정답은 <b>sets</b><br>the sun + <b>sets</b><br>· <b>set</b> ❌ — -s 가 빠졌어요<br>· <b>setting</b> ❌ — is 없이 -ing 만 쓸 수 없어요<br>· <b>to set</b> ❌ — to set 은 동사 자리에 못 와요<br>💡 The sun sets 🌇"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Leaves (　　) from trees.</b><br><span style='font-size:.88rem;color:#6B7B7E'>나뭇잎들이 나무에서 떨어져요.</span>", "choices": ["fall", "falls", "falling", "is fall"], "answer": "fall", "say": "Leaves fall from trees.", "spk": true, "exp": "정답은 <b>fall</b><br>leaves 는 여럿이라서 -s 없이 <b>fall</b><br>· <b>falls</b> ❌ — 여럿인 주어 뒤에는 -s 를 붙이지 않아요<br>· <b>falling</b> ❌ — are 없이 -ing 만 쓸 수 없어요<br>· <b>is fall</b> ❌ — is 와 fall 을 같이 쓰지 않아요<br>💡 여럿 → -s 없이 🍁"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>First, spring (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>처음에 봄이 와요.</span>", "choices": ["comes", "come", "coming", "comed"], "answer": "comes", "say": "First, spring comes.", "spk": true, "exp": "정답은 <b>comes</b><br>spring 은 혼자라서 <b>comes</b><br>· <b>come</b> ❌ — -s 가 빠졌어요<br>· <b>coming</b> ❌ — is 없이 -ing 만 쓸 수 없어요<br>· <b>comed</b> ❌ — 이런 모양은 없어요<br>💡 spring comes 🌱"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv h\">심화</span><br>우리말에 맞게 바르게 쓴 것을 고르세요.<br><span style='font-size:.88rem;color:#6B7B7E'>매년, 이야기는 계속돼요.</span>", "choices": ["Every year, the story goes on.", "Every year, the story go on.", "Every year, the story gos on.", "Every year, the story going on."], "answer": "Every year, the story goes on.", "say": "Every year, the story goes on.", "spk": false, "exp": "정답은 <b>Every year, the story goes on.</b><br>the story 는 혼자 → go 에는 <b>-es</b> 를 붙여 <b>goes</b><br>· <b>Every year, the story go on.</b> ❌ — -s 가 빠졌어요<br>· <b>Every year, the story gos on.</b> ❌ — go 는 -s 가 아니라 -es 를 붙여요<br>· <b>Every year, the story going on.</b> ❌ — is 없이 -ing 만 쓸 수 없어요<br>💡 go → goes · do → does"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv h\">심화</span><br><b>틀린</b> 문장을 고르세요.", "choices": ["The garden are full of flowers.", "The weather gets hotter in summer.", "Plants begin to sprout.", "Many plants have no leaves."], "answer": "The garden are full of flowers.", "say": "-", "spk": false, "exp": "정답은 <b>The garden are full of flowers.</b><br>the garden 은 혼자라서 are 가 아니라 <b>is</b> 예요 → The garden <b>is</b> full of flowers.<br>· <b>The weather gets hotter in summer.</b> ❌ — 바른 문장이에요 — the weather + gets<br>· <b>Plants begin to sprout.</b> ❌ — 바른 문장이에요 — 여럿(plants) + begin<br>· <b>Many plants have no leaves.</b> ❌ — 바른 문장이에요 — 여럿(plants) + have<br>💡 혼자 → is · gets / 여럿 → are · get"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Does the weather (　　) colder in winter?</b><br><span style='font-size:.88rem;color:#6B7B7E'>겨울에는 날씨가 더 추워지니?</span>", "choices": ["get", "gets", "getting", "to gets"], "answer": "get", "say": "Does the weather get colder in winter?", "spk": true, "exp": "정답은 <b>get</b><br><b>Does 뒤에는 원래 모양</b>! -s 는 이미 Does 가 가져갔어요.<br>· <b>gets</b> ❌ — Does 뒤에는 -s 를 붙이지 않아요<br>· <b>getting</b> ❌ — Does 뒤에 -ing 는 안 돼요<br>· <b>to gets</b> ❌ — 이런 모양은 없어요<br>💡 Does + 원래 모양"},
+{"src": "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Earth (　　) around the sun.</b><br><span style='font-size:.88rem;color:#6B7B7E'>지구는 태양 주위를 돌아요.</span>", "choices": ["moves", "move", "moving", "are move"], "answer": "moves", "say": "Earth moves around the sun.", "spk": true, "exp": "정답은 <b>moves</b><br>Earth 는 하나뿐 → <b>moves</b>. Unit 8 에서 '해가 아니라 지구가 움직인다'고 배웠죠!<br>· <b>move</b> ❌ — -s 가 빠졌어요<br>· <b>moving</b> ❌ — is 없이 -ing 만 쓸 수 없어요<br>· <b>are move</b> ❌ — are 와 move 를 같이 쓰지 않아요<br>💡 Earth moves 🌍"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>The redwood tree is (　　) than the Statue of Liberty.</b><br><span style='font-size:.88rem;color:#6B7B7E'>레드우드는 자유의 여신상보다 더 커요.</span>", "choices": ["taller", "tallest", "tall", "the tallest"], "answer": "taller", "say": "The redwood tree is taller than the Statue of Liberty.", "spk": true, "exp": "정답은 <b>taller</b><br>뒤에 <b>than</b> 이 있으니 둘 비교 → <b>taller</b>. 지난 시험 Unit 9 C-1 유형이에요.<br>· <b>tallest</b> ❌ — than 과는 -est 를 쓰지 않아요 — 지난번에 쓴 답이에요<br>· <b>tall</b> ❌ — 비교할 때는 -er 을 붙여요<br>· <b>the tallest</b> ❌ — the -est 는 '제일'일 때예요<br>💡 than → -er"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Bamboo is the (　　) grass in the world.</b><br><span style='font-size:.88rem;color:#6B7B7E'>대나무는 세계에서 가장 큰 풀이에요.</span>", "choices": ["tallest", "taller", "tall", "most tall"], "answer": "tallest", "say": "Bamboo is the tallest grass in the world.", "spk": true, "exp": "정답은 <b>tallest</b><br>앞에 <b>the</b>, 뒤에 <b>in the world</b> → 제일 → <b>tallest</b>. 지난 시험 Unit 9 C-2 유형이에요.<br>· <b>taller</b> ❌ — '세계에서 제일'이라서 -est — 지난번에 쓴 답이에요<br>· <b>tall</b> ❌ — the 와 in the world 가 있으면 -est<br>· <b>most tall</b> ❌ — tall 은 most 대신 -est 를 붙여요<br>💡 the ~ in the world → -est 🎋"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>The redwood tree is the (　　) tree in the world.</b><br><span style='font-size:.88rem;color:#6B7B7E'>레드우드는 세계에서 가장 큰 나무예요.</span>", "choices": ["tallest", "taller", "tall", "talles"], "answer": "tallest", "say": "The redwood tree is the tallest tree in the world.", "spk": true, "exp": "정답은 <b>tallest</b><br>the ~ in the world → <b>tallest</b><br>· <b>taller</b> ❌ — '제일'이라서 -est<br>· <b>tall</b> ❌ — the ~ in the world 가 있으면 -est<br>· <b>talles</b> ❌ — t 가 빠졌어요<br>💡 the tallest 🌲"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>The rafflesia is the (　　) flower in the world.</b><br><span style='font-size:.88rem;color:#6B7B7E'>라플레시아는 세계에서 가장 큰 꽃이에요.</span>", "choices": ["biggest", "bigger", "bigest", "big"], "answer": "biggest", "say": "The rafflesia is the biggest flower in the world.", "spk": true, "exp": "정답은 <b>biggest</b><br>big → bi<b>gg</b>est (g 두 번!)<br>· <b>bigger</b> ❌ — than 이 없고 the ~ in the world 가 있어요<br>· <b>bigest</b> ❌ — g 를 한 번 더 써야 해요<br>· <b>big</b> ❌ — '제일'이라서 -est<br>💡 big → bigger → biggest 🌺"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Summer is (　　) than spring.</b><br><span style='font-size:.88rem;color:#6B7B7E'>여름은 봄보다 더 더워요.</span>", "choices": ["hotter", "hottest", "hoter", "hot"], "answer": "hotter", "say": "Summer is hotter than spring.", "spk": true, "exp": "정답은 <b>hotter</b><br>than → -er, hot → ho<b>tt</b>er<br>· <b>hottest</b> ❌ — than 과는 -est 를 쓰지 않아요<br>· <b>hoter</b> ❌ — t 를 한 번 더 써야 해요<br>· <b>hot</b> ❌ — 비교할 때는 -er<br>💡 hot → hotter 🔥"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>An elephant is (　　) than a mouse.</b><br><span style='font-size:.88rem;color:#6B7B7E'>코끼리는 쥐보다 더 커요.</span>", "choices": ["bigger", "biggest", "the bigger", "more big"], "answer": "bigger", "say": "An elephant is bigger than a mouse.", "spk": true, "exp": "정답은 <b>bigger</b><br>than → <b>bigger</b><br>· <b>biggest</b> ❌ — than 과는 -est 를 쓰지 않아요<br>· <b>the bigger</b> ❌ — -er 앞에 the 를 붙이지 않아요<br>· <b>more big</b> ❌ — big 은 more 대신 -er<br>💡 bigger than 🐘"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv h\">심화</span><br><b>바른</b> 문장을 고르세요.", "choices": ["The giraffe is taller than the man.", "The giraffe is tallest than the man.", "The giraffe is the taller animal in the world.", "The giraffe is more tall than the man."], "answer": "The giraffe is taller than the man.", "say": "The giraffe is taller than the man.", "spk": false, "exp": "정답은 <b>The giraffe is taller than the man.</b><br>than 과 짝인 <b>taller</b> 를 바르게 썼어요.<br>· <b>The giraffe is tallest than the man.</b> ❌ — than 과는 -est 를 쓰지 않아요<br>· <b>The giraffe is the taller animal in the world.</b> ❌ — in the world 와는 the tallest<br>· <b>The giraffe is more tall than the man.</b> ❌ — tall 은 more 대신 -er<br>💡 than ↔ -er · the ↔ -est"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>In winter, the weather gets (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>겨울에는 날씨가 더 추워져요.</span>", "choices": ["colder", "coldest", "the coldest", "cold"], "answer": "colder", "say": "In winter, the weather gets colder.", "spk": true, "exp": "정답은 <b>colder</b><br>gets + -er : 점점 '더' 추워진다는 뜻 → <b>colder</b><br>· <b>coldest</b> ❌ — gets 뒤에는 -er 로 '더 ~해지다'<br>· <b>the coldest</b> ❌ — gets 뒤에는 -er 로 '더 ~해지다'<br>· <b>cold</b> ❌ — '더' 추워진다는 뜻이라 -er<br>💡 gets warmer · gets colder ❄️"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>It can grow 100 meters (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>그것은 100미터 높이로 자랄 수 있어요.</span>", "choices": ["tall", "taller", "tallest", "talls"], "answer": "tall", "say": "It can grow 100 meters tall.", "spk": true, "exp": "정답은 <b>tall</b><br>숫자 + meters 뒤에는 원래 모양 <b>tall</b>. 9/17 클리닉에서 연습한 그 문장이에요!<br>· <b>taller</b> ❌ — 비교하는 대상이 없어요<br>· <b>tallest</b> ❌ — '제일'이라는 뜻이 아니에요<br>· <b>talls</b> ❌ — tall 에는 -s 를 붙이지 않아요<br>💡 100 meters tall 📏"},
+{"src": "3영역 · 비교급 taller vs 최상급 the tallest", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Bamboo is (　　) than the giraffe.</b><br><span style='font-size:.88rem;color:#6B7B7E'>대나무는 기린보다 더 커요.</span>", "choices": ["taller", "the tallest", "tallest", "tall"], "answer": "taller", "say": "Bamboo is taller than the giraffe.", "spk": true, "exp": "정답은 <b>taller</b><br>than → <b>taller</b>. 같은 대나무라도 신호 낱말에 따라 답이 달라져요!<br>· <b>the tallest</b> ❌ — than 이 있으면 the tallest 를 못 써요<br>· <b>tallest</b> ❌ — than 과는 -est 를 쓰지 않아요<br>· <b>tall</b> ❌ — 비교할 때는 -er<br>💡 신호 낱말이 답을 정해요"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv b\">기초</span><br>이야기 'The Story of the Year' 에서 <b>여름(summer) 다음</b>에 오는 계절은?", "choices": ["fall", "winter", "spring", "summer"], "answer": "fall", "say": "First, spring comes. Then, summer, fall, and winter come.", "spk": true, "exp": "정답은 <b>fall</b><br>봄 → 여름 → <b>가을(fall)</b> → 겨울. 그래서 'Winter is the season after summer' 는 <b>False</b> 예요. 지난 시험 Unit 7 A-4 유형이에요.<br>· <b>winter</b> ❌ — 겨울은 가을 다음이에요 — 지난번에 True 로 고른 이유예요<br>· <b>spring</b> ❌ — 봄은 겨울 다음이에요<br>· <b>summer</b> ❌ — 같은 계절이에요<br>💡 spring → summer → fall → winter 🍂"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv b\">기초</span><br>이야기 'Amazing Plants' 에서 <b>세계에서 가장 큰 풀</b>은?", "choices": ["bamboo", "redwood", "rafflesia", "giraffe"], "answer": "bamboo", "say": "Bamboo is the world's tallest grass.", "spk": true, "exp": "정답은 <b>bamboo</b><br>Bamboo is the world's tallest grass. 그래서 Unit 9 A-3 은 <b>True</b> 가 정답이었어요. 지난번엔 False 를 골랐어요.<br>· <b>redwood</b> ❌ — 가장 큰 '나무'예요<br>· <b>rafflesia</b> ❌ — 가장 큰 '꽃'이에요<br>· <b>giraffe</b> ❌ — 식물이 아니라 동물이에요<br>💡 bamboo = tallest grass 🎋"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Stars are (　　), so they look small.</b><br><span style='font-size:.88rem;color:#6B7B7E'>별들은 멀리 있어서 작아 보여요.</span>", "choices": ["far away", "for aways", "far aways", "for away"], "answer": "far away", "say": "Stars are far away, so they look small.", "spk": false, "exp": "정답은 <b>far away</b><br>멀리 = <b>far away</b>. 지난 시험 Unit 8 C-1 유형이에요.<br>· <b>for aways</b> ❌ — for(~을 위해)와 far(먼)는 달라요 — 지난번에 쓴 답과 같아요<br>· <b>far aways</b> ❌ — away 에는 s 가 없어요<br>· <b>for away</b> ❌ — far 의 철자는 a<br>💡 far away = 멀리 ✨"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>The sun is (　　) to Earth, so it looks big.</b><br><span style='font-size:.88rem;color:#6B7B7E'>해는 지구에 가까워서 커 보여요.</span>", "choices": ["close", "far", "closed", "far away"], "answer": "close", "say": "The sun is close to Earth, so it looks big.", "spk": true, "exp": "정답은 <b>close</b><br>가까워서 커 보여요 → <b>close</b><br>· <b>far</b> ❌ — 멀면 작아 보여요<br>· <b>closed</b> ❌ — '닫힌'이라는 뜻이에요<br>· <b>far away</b> ❌ — 멀면 작아 보여요<br>💡 close = 가까운 ☀️"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv b\">기초</span><br>이야기 'The Sun' 에서 해는 무엇이라고 했나요?", "choices": ["a star", "a lamp", "a light", "a planet"], "answer": "a star", "say": "The sun is a star.", "spk": true, "exp": "정답은 <b>a star</b><br>The sun is <b>a star</b>. 해는 별이에요.<br>· <b>a lamp</b> ❌ — 램프가 아니에요<br>· <b>a light</b> ❌ — 빛을 내지만 '별'이라고 했어요<br>· <b>a planet</b> ❌ — 지구가 planet(행성)이에요<br>💡 The sun is a star ⭐"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>In spring, plants begin to (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>봄에 식물들이 싹이 트기 시작해요.</span>", "choices": ["sprout", "fall", "sleep", "melt"], "answer": "sprout", "say": "In spring, plants begin to sprout.", "spk": true, "exp": "정답은 <b>sprout</b><br>sprout = 싹이 나다<br>· <b>fall</b> ❌ — fall 은 가을에 잎이 떨어지는 거예요<br>· <b>sleep</b> ❌ — '자다'예요<br>· <b>melt</b> ❌ — '녹다'예요<br>💡 sprout 🌱"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv h\">심화</span><br>이야기 'The Sun' 의 내용과 <b>맞는</b> 것을 고르세요.", "choices": ["The sun is not really moving, but Earth is moving.", "Earth is not moving, but the sun is moving.", "The sun is far away from Earth, so it looks big.", "Stars are close, so they look small."], "answer": "The sun is not really moving, but Earth is moving.", "say": "The sun is not really moving, but Earth is moving.", "spk": false, "exp": "정답은 <b>The sun is not really moving, but Earth is moving.</b><br>해가 움직이는 것처럼 보이지만 사실은 <b>지구가 움직여요</b>.<br>· <b>Earth is not moving, but the sun is moving.</b> ❌ — 거꾸로 말했어요<br>· <b>The sun is far away from Earth, so it looks big.</b> ❌ — 해는 가까워서(close) 커 보여요<br>· <b>Stars are close, so they look small.</b> ❌ — 별은 멀리(far away) 있어서 작아 보여요<br>💡 Earth is moving 🌍"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>At night, the sun is shining on the other side of (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>밤에는 해가 지구의 다른 쪽을 비추고 있어요.</span>", "choices": ["Earth", "the moon", "the stars", "the sky"], "answer": "Earth", "say": "At night, the sun is shining on the other side of Earth.", "spk": true, "exp": "정답은 <b>Earth</b><br>밤이면 해는 지구 <b>반대편</b>을 비춰요. 서연이가 잘 맞힌 문제예요 👍<br>· <b>the moon</b> ❌ — 달이 아니에요<br>· <b>the stars</b> ❌ — 별이 아니에요<br>· <b>the sky</b> ❌ — 하늘이 아니에요<br>💡 other side of Earth 🌏"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv h\">심화</span><br>'Many plants have no leaves.' 의 뜻으로 알맞은 것을 고르세요.", "choices": ["많은 식물들이 잎이 없어요.", "많은 식물들이 잎을 가지고 있어요.", "많은 잎들이 식물이 없어요.", "식물은 잎이 많아요."], "answer": "많은 식물들이 잎이 없어요.", "say": "Many plants have no leaves.", "spk": false, "exp": "정답은 <b>많은 식물들이 잎이 없어요.</b><br>have <b>no</b> leaves = 잎이 <b>없다</b>. 겨울 이야기예요.<br>· <b>많은 식물들이 잎을 가지고 있어요.</b> ❌ — no 가 있어서 '없다'예요<br>· <b>많은 잎들이 식물이 없어요.</b> ❌ — 주어는 plants(식물들)예요<br>· <b>식물은 잎이 많아요.</b> ❌ — no 를 빼고 해석했어요<br>💡 have no = 없다 🌨️"},
+{"src": "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", "q": "<span class=\"lv h\">심화</span><br>이야기 'Amazing Plants' 의 내용과 <b>다른</b> 것을 고르세요.", "choices": ["The rafflesia is the world's tallest tree.", "The redwood tree can grow 100 meters tall.", "Bamboo is the world's tallest grass.", "The rafflesia is the world's biggest flower."], "answer": "The rafflesia is the world's tallest tree.", "say": "-", "spk": false, "exp": "정답은 <b>The rafflesia is the world's tallest tree.</b><br>rafflesia 는 가장 큰 <b>꽃</b>이에요. 가장 큰 나무는 <b>redwood</b>!<br>· <b>The redwood tree can grow 100 meters tall.</b> ❌ — 지문 내용과 같아요<br>· <b>Bamboo is the world's tallest grass.</b> ❌ — 지문 내용과 같아요<br>· <b>The rafflesia is the world's biggest flower.</b> ❌ — 지문 내용과 같아요<br>💡 redwood 나무 · bamboo 풀 · rafflesia 꽃"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv b\">기초</span><br>'<b>다 되다, 다 떨어지다</b>'를 영어로 하면?", "choices": ["run out", "get to", "after all", "come true"], "answer": "run out", "say": "run out", "spk": true, "exp": "정답은 <b>run out</b><br>run out = 다 떨어지다. 지난 시험 29번이에요.<br>· <b>get to</b> ❌ — '~에 도착하다'예요<br>· <b>after all</b> ❌ — '결국'이에요<br>· <b>come true</b> ❌ — '이루어지다'예요<br>💡 We ran out of milk. 우유가 다 떨어졌어 🥛"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv b\">기초</span><br>'<b>튀기다, 볶다</b>'를 영어로 하면?", "choices": ["fry", "row", "tax", "slide"], "answer": "fry", "say": "fry", "spk": true, "exp": "정답은 <b>fry</b><br>fry = 튀기다, 볶다. 지난 시험 30번이에요.<br>· <b>row</b> ❌ — '열, 줄'이에요<br>· <b>tax</b> ❌ — '세금'이에요<br>· <b>slide</b> ❌ — '미끄러지다'예요<br>💡 fried chicken = 튀긴 닭 🍗"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv b\">기초</span><br>'<b>해외에, 해외로</b>'를 영어로 하면?", "choices": ["abroad", "aloud", "around", "about"], "answer": "abroad", "say": "abroad", "spk": true, "exp": "정답은 <b>abroad</b><br>abroad = 해외로. 지난 시험 34번이에요.<br>· <b>aloud</b> ❌ — '소리 내어'예요<br>· <b>around</b> ❌ — '주위에'예요<br>· <b>about</b> ❌ — '~에 대해'예요<br>💡 go abroad 해외에 가다 ✈️"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv b\">기초</span><br>'<b>~에 도착하다</b>'를 영어로 하면?", "choices": ["get to", "run out", "get up", "go to"], "answer": "get to", "say": "get to", "spk": true, "exp": "정답은 <b>get to</b><br>get to = ~에 도착하다. 지난 시험 35번이에요.<br>· <b>run out</b> ❌ — '다 떨어지다'예요<br>· <b>get up</b> ❌ — '일어나다'예요<br>· <b>go to</b> ❌ — '~에 가다'예요 — 도착이 아니에요<br>💡 get to school 학교에 도착하다 🏫"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv b\">기초</span><br>'<b>세금</b>'의 철자가 바른 것을 고르세요.", "choices": ["tax", "tox", "tex", "taks"], "answer": "tax", "say": "tax", "spk": false, "exp": "정답은 <b>tax</b><br>tax — 가운데는 <b>a</b>. 지난 시험 36번이에요.<br>· <b>tox</b> ❌ — 가운데가 o 가 아니에요 — 지난번에 쓴 답이에요<br>· <b>tex</b> ❌ — 가운데가 e 가 아니에요<br>· <b>taks</b> ❌ — 끝은 ks 가 아니라 x<br>💡 t-a-x 💰"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv b\">기초</span><br>'<b>똑바로, 곧장</b>'의 철자가 바른 것을 고르세요.", "choices": ["straight", "strait", "straigt", "streight"], "answer": "straight", "say": "straight", "spk": false, "exp": "정답은 <b>straight</b><br>straight — <b>gh</b> 가 숨어 있어요. 지난 시험 37번이에요.<br>· <b>strait</b> ❌ — gh 가 빠졌어요<br>· <b>straigt</b> ❌ — g 다음 h 가 빠졌어요<br>· <b>streight</b> ❌ — stra 로 시작해요<br>💡 Go straight. 똑바로 가세요 ⬆️"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv b\">기초</span><br>'<b>온실</b>'을 영어로 하면?", "choices": ["greenhouse", "green house", "glasshouse", "greenhose"], "answer": "greenhouse", "say": "greenhouse", "spk": false, "exp": "정답은 <b>greenhouse</b><br>green + house 를 <b>붙여서</b> greenhouse. 지난 시험 38번이에요.<br>· <b>green house</b> ❌ — 띄어 쓰면 '초록색 집'이 돼요<br>· <b>glasshouse</b> ❌ — 시험 낱말은 greenhouse 예요<br>· <b>greenhose</b> ❌ — house 의 u 가 빠졌어요<br>💡 greenhouse 🌿"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv h\">심화</span><br>'<b>어느 한 쪽; ~도 또한</b>'을 영어로 하면?", "choices": ["either", "other", "neither", "each"], "answer": "either", "say": "either", "spk": true, "exp": "정답은 <b>either</b><br>either = 어느 한 쪽, (부정문에서) ~도 또한. 지난 시험 39번이에요.<br>· <b>other</b> ❌ — '다른'이에요<br>· <b>neither</b> ❌ — '둘 다 아닌'이에요<br>· <b>each</b> ❌ — '각각'이에요<br>💡 I don't like it, either. 나도 안 좋아해 🙅"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv h\">심화</span><br>'<b>도움이 되는, 유익한</b>'을 영어로 하면?", "choices": ["helpful", "helper", "helpless", "helpfull"], "answer": "helpful", "say": "helpful", "spk": false, "exp": "정답은 <b>helpful</b><br>help + <b>ful</b> (l 하나!). 지난 시험 40번이에요.<br>· <b>helper</b> ❌ — '도와주는 사람'이에요<br>· <b>helpless</b> ❌ — '무력한'이에요<br>· <b>helpfull</b> ❌ — -ful 은 l 이 하나예요<br>💡 This book is helpful. 📘"},
+{"src": "5영역 · DAY 17 단어 다시 잡기", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>We (　　) of sugar. Let's buy some.</b><br><span style='font-size:.88rem;color:#6B7B7E'>설탕이 다 떨어졌어. 좀 사자.</span>", "choices": ["ran out", "got to", "fried", "either"], "answer": "ran out", "say": "We ran out of sugar. Let's buy some.", "spk": true, "exp": "정답은 <b>ran out</b><br>run out of ~ = ~이 다 떨어지다 (과거 ran out)<br>· <b>got to</b> ❌ — '도착했다'예요<br>· <b>fried</b> ❌ — '튀겼다'예요<br>· <b>either</b> ❌ — '어느 한 쪽'이에요<br>💡 ran out of 🛒"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv b\">기초</span><br>'<b>함께, 같이</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["together", "togeter", "togather", "tugether"], "answer": "together", "say": "together", "spk": false, "exp": "정답은 <b>together</b><br>to + ge + <b>th</b> + er. 지난 받아쓰기 19번 — 지난달에도 h 를 빠뜨렸던 낱말이에요!<br>· <b>togeter</b> ❌ — h 가 빠졌어요 — 지난번에 쓴 답이에요<br>· <b>togather</b> ❌ — 가운데는 e<br>· <b>tugether</b> ❌ — to 로 시작해요<br>💡 Let's go together. 👭"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv b\">기초</span><br>'<b>의사</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["doctor", "docter", "doctur", "dockter"], "answer": "doctor", "say": "doctor", "spk": false, "exp": "정답은 <b>doctor</b><br>doctor — 끝은 <b>-or</b>. 지난 받아쓰기 18번이에요.<br>· <b>docter</b> ❌ — 끝이 -er 이 아니에요 — 지난번에 쓴 답이에요<br>· <b>doctur</b> ❌ — 끝은 -or<br>· <b>dockter</b> ❌ — c 하나면 돼요<br>💡 I want to be a doctor. 🩺"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv b\">기초</span><br>'<b>사촌</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["cousin", "cousing", "cusin", "cousen"], "answer": "cousin", "say": "cousin", "spk": false, "exp": "정답은 <b>cousin</b><br>cousin — 끝에 g 가 없어요. 지난 받아쓰기 3번이에요.<br>· <b>cousing</b> ❌ — g 가 붙었어요 — 지난번에 쓴 답이에요<br>· <b>cusin</b> ❌ — o 가 빠졌어요<br>· <b>cousen</b> ❌ — 끝은 -in<br>💡 my cousin in Busan 👦"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv b\">기초</span><br>'<b>딸기</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["strawberry", "strawbrry", "strawbery", "strowberry"], "answer": "strawberry", "say": "strawberry", "spk": false, "exp": "정답은 <b>strawberry</b><br>straw + <b>berry</b> (r 두 개). 지난 받아쓰기 2번이에요.<br>· <b>strawbrry</b> ❌ — e 가 빠졌어요 — 지난번에 쓴 답이에요<br>· <b>strawbery</b> ❌ — r 이 두 개예요<br>· <b>strowberry</b> ❌ — straw 로 시작해요<br>💡 strawberry cake 🍓"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv b\">기초</span><br>'<b>말(동물)</b>'을(를) 뜻하는 낱말의 철자가 바른 것을 고르세요.", "choices": ["horse", "hourse", "hors", "horce"], "answer": "horse", "say": "horse", "spk": false, "exp": "정답은 <b>horse</b><br>horse — h-o-r-s-e. 지난 받아쓰기 9번이에요.<br>· <b>hourse</b> ❌ — u 가 들어갔어요 — 지난번에 쓴 답이에요<br>· <b>hors</b> ❌ — 끝에 e 가 빠졌어요<br>· <b>horce</b> ❌ — c 가 아니라 s<br>💡 I rode a horse. 🐴"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Can I (　　) it? I want to read more.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그거 빌려도 될까? 더 읽고 싶어.</span>", "choices": ["borrow", "borran", "burrow", "borow"], "answer": "borrow", "say": "Can I borrow it? I want to read more.", "spk": false, "exp": "정답은 <b>borrow</b><br>borrow = 빌리다 (r 두 개). 지난 받아쓰기 12번이에요.<br>· <b>borran</b> ❌ — 이런 낱말은 없어요 — 지난번에 쓴 답이에요<br>· <b>burrow</b> ❌ — '굴을 파다'예요<br>· <b>borow</b> ❌ — r 이 두 개예요<br>💡 borrow 📰"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv b\">기초</span><br>빈칸에 알맞은 말을 고르세요.<br><b>I lost her (　　) the roller coaster.</b><br><span style='font-size:.88rem;color:#6B7B7E'>롤러코스터 근처에서 그 아이를 잃어버렸어요.</span>", "choices": ["near", "hear", "here", "nare"], "answer": "near", "say": "I lost her near the roller coaster.", "spk": true, "exp": "정답은 <b>near</b><br>near = 가까이에, 근처에. 지난 받아쓰기 6번이에요.<br>· <b>hear</b> ❌ — '듣다'예요 — 지난번에 쓴 답이에요<br>· <b>here</b> ❌ — '여기'예요<br>· <b>nare</b> ❌ — 이런 낱말은 없어요<br>💡 near ↔ far 🎢"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Because we can see beautiful (　　).</b><br><span style='font-size:.88rem;color:#6B7B7E'>아름다운 나뭇잎들을 볼 수 있으니까.</span>", "choices": ["leaves", "leafs", "leaf", "leafes"], "answer": "leaves", "say": "Because we can see beautiful leaves.", "spk": true, "exp": "정답은 <b>leaves</b><br>leaf 하나 → <b>leaves</b> 여럿 (f → ves). 지난 받아쓰기 7번이에요.<br>· <b>leafs</b> ❌ — f 를 v 로 바꾸고 -es<br>· <b>leaf</b> ❌ — 여럿이라서 leaf 그대로는 안 돼요<br>· <b>leafes</b> ❌ — f 를 v 로 바꿔야 해요<br>💡 leaf → leaves 🍁"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Then, let's go to the (　　) store first.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그럼 먼저 식료품 가게에 가자.</span>", "choices": ["grocery", "grosery", "grocry", "grocerry"], "answer": "grocery", "say": "Then, let's go to the grocery store first.", "spk": false, "exp": "정답은 <b>grocery</b><br>grocery — c 하나, r 하나. 지난 받아쓰기 2번이에요.<br>· <b>grosery</b> ❌ — c 대신 s 를 썼어요<br>· <b>grocry</b> ❌ — e 가 빠졌어요<br>· <b>grocerry</b> ❌ — r 은 하나예요<br>💡 grocery store 🛒"},
+{"src": "6영역 · 받아쓰기 철자 (together · doctor · cousin)", "q": "<span class=\"lv h\">심화</span><br>빈칸에 알맞은 말을 고르세요.<br><b>Then, let's play (　　) this weekend.</b><br><span style='font-size:.88rem;color:#6B7B7E'>그럼 이번 주말에 배드민턴 치자.</span>", "choices": ["badminton", "badmintion", "badmenton", "batminton"], "answer": "badminton", "say": "Then, let's play badminton this weekend.", "spk": false, "exp": "정답은 <b>badminton</b><br>bad + min + ton. 지난 받아쓰기 3번이에요.<br>· <b>badmintion</b> ❌ — 끝은 -ton<br>· <b>badmenton</b> ❌ — 가운데는 i<br>· <b>batminton</b> ❌ — bad 로 시작해요<br>💡 play badminton 🏸"}
+];
+
+var SECTIONS = [
+  { name: "1영역 · Does ~? 대답은 does / doesn't", start: 0, end: 10, cards: [CT[0]] },
+  { name: "2영역 · 혼자인 주어 뒤 동사에 -s (gets · rises)", start: 10, end: 20, cards: [CT[1]] },
+  { name: "3영역 · 비교급 taller vs 최상급 the tallest", start: 20, end: 30, cards: [CT[2]] },
+  { name: "4영역 · 리딩 내용 확인 (계절 · 태양 · 식물)", start: 30, end: 40, cards: [CT[3]] },
+  { name: "5영역 · DAY 17 단어 다시 잡기", start: 40, end: 50, cards: [CT[4]] },
+  { name: "6영역 · 받아쓰기 철자 (together · doctor · cousin)", start: 50, end: 60, cards: [CT[5]] }
+];
+var NSEC = SECTIONS.length;
+function secIndex(i) {
+  for (var s = 0; s < NSEC; s++) { if (i < SECTIONS[s].end) return s; }
+  return NSEC - 1;
+}
+
+/* ══════ 카드가 나오는 문항 위치 ══════ */
+var CARD_AT = { 0: CT[0], 10: CT[1], 20: CT[2], 30: CT[3], 40: CT[4], 50: CT[5] };
+
+/* ══════ 정답 위치 균등 분산 셔플 (영역별로 따로 분산) ══════ */
+function shuffleArr(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function balancedAssign(n, k) {
+  var pool = [];
+  var base = Math.floor(n / k);
+  for (var p = 0; p < k; p++) { for (var c = 0; c < base; c++) pool.push(p); }
+  var remainder = n - pool.length;
+  var extraPositions = shuffleArr([0, 1, 2, 3]).slice(0, remainder);
+  extraPositions.forEach(function (p) { pool.push(p); });
+  return shuffleArr(pool);
+}
+function hasRunOf3(arr) {
+  for (var i = 2; i < arr.length; i++) {
+    if (arr[i] === arr[i - 1] && arr[i - 1] === arr[i - 2]) return true;
+  }
+  return false;
+}
+(function prepareShuffledChoices() {
+  SECTIONS.forEach(function (sec) {
+    var mcqIdx = [];
+    for (var idx = sec.start; idx < sec.end; idx++) { mcqIdx.push(idx); }
+    var targetPositions = balancedAssign(mcqIdx.length, 4);
+    for (var guard = 0; guard < 200 && hasRunOf3(targetPositions); guard++) {
+      targetPositions = balancedAssign(mcqIdx.length, 4);
+    }
+    mcqIdx.forEach(function (idx, mi) {
+      var q = ALL[idx];
+      var shuffled = shuffleArr(q.choices);
+      var curPos = shuffled.indexOf(q.answer);
+      var target = targetPositions[mi];
+      var tmp = shuffled[target]; shuffled[target] = shuffled[curPos]; shuffled[curPos] = tmp;
+      q.shuffled = shuffled;
+    });
+  });
+})();
+
+/* ══════ 진행 상태 ══════ */
+var studentName = "";
+var current = 0;
+var answersLog = new Array(ALL.length).fill(null);
+var elapsed = new Array(NSEC).fill(0);
+var sent = new Array(NSEC).fill(false);
+var lastTick = 0;
+var curSec = 0;
+var cardsShown = {};
+var pendingCard = 0;
+
+/* ══════ 진행 자동 저장 ══════ */
+var SAVE_KEY = "engfit-lsy-clinic-1002";
+function saveState() {
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
+      v: 1, name: studentName, current: current, log: answersLog, elapsed: elapsed, sent: sent,
+      cards: cardsShown,
+      choices: ALL.map(function (q) { return q.shuffled || null; })
+    }));
+  } catch (e) {}
+}
+function loadState() {
+  try {
+    var s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    return (s && s.v === 1 && s.name && s.log) ? s : null;
+  } catch (e) { return null; }
+}
+function clearState() { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} }
+
+function show(id) {
+  var wasHidden = document.getElementById(id).classList.contains("hidden");
+  ["start-card", "resume-card", "cards-card", "quiz-card", "sec-result-card"].forEach(function (c) {
+    document.getElementById(c).classList.toggle("hidden", c !== id);
+  });
+  if (id === "start-card") refreshSectionButtons();
+  if (wasHidden) window.scrollTo(0, 0);
+}
+
+/* ══════ 영역 완료 여부 ══════ */
+function secDone(si) {
+  var s = SECTIONS[si];
+  for (var i = s.start; i < s.end; i++) { if (!answersLog[i]) return false; }
+  return true;
+}
+function firstUndoneSec() {
+  for (var i = 0; i < NSEC; i++) { if (!secDone(i)) return i; }
+  return -1;
+}
+function refreshSectionButtons() {
+  var doneList = [];
+  for (var si = 0; si < NSEC; si++) {
+    var btn = document.getElementById("start-s" + (si + 1));
+    if (!btn) continue;
+    var done = secDone(si);
+    btn.classList.toggle("done", done);
+    if (done) doneList.push(si + 1);
+  }
+  var note = document.getElementById("sec-done-note");
+  if (note) {
+    note.textContent = doneList.length
+      ? "✓ " + doneList.map(function (n) { return String(n); }).join("영역, ") + "영역은 이미 다 풀었어요 (다시 눌러 복습할 수 있어요)"
+      : "";
+  }
+}
+
+/* ══════ 카드 → 문제 5개 순서로 진행 ══════ */
+function step() {
+  var si = secIndex(current);
+  curSec = si;
+  if (CARD_AT[current] && !cardsShown[current]) { showCardScreen(current); }
+  else { show("quiz-card"); showQuestion(); }
+}
+function showCardScreen(i) {
+  pendingCard = i;
+  var sec = SECTIONS[curSec];
+  var title = CARD_AT[i];
+  var pos = sec.cards.indexOf(title) + 1;
+  document.getElementById("card-num").textContent = "개념 카드 " + pos + " / " + sec.cards.length;
+  document.getElementById("card-sec").textContent = sec.name.split(" · ")[0];
+  document.getElementById("card-bar").style.width = (pos / sec.cards.length * 100) + "%";
+  document.getElementById("cardbox").innerHTML = "<h2>" + title + "</h2>" + (TIPS[title] || "");
+  var wr = document.getElementById("wordrow");
+  wr.innerHTML = "";
+  var ws = WORDS[title] || [];
+  document.getElementById("word-hint").classList.toggle("hidden", !(speechOK && ws.length));
+  if (speechOK) {
+    ws.forEach(function (w) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "wordchip";
+      chip.textContent = "🔊 " + w;
+      chip.addEventListener("click", function () { speak(w); });
+      wr.appendChild(chip);
+    });
+  }
+  show("cards-card");
+}
+document.getElementById("card-next").addEventListener("click", function () {
+  cardsShown[pendingCard] = true;
+  saveState();
+  show("quiz-card");
+  showQuestion();
+});
+document.getElementById("card-skip").addEventListener("click", function () {
+  cardsShown[pendingCard] = true;
+  saveState();
+  show("quiz-card");
+  showQuestion();
+});
+
+/* ══════ 시작 (영역 선택) / 이어하기 ══════ */
+var nameInput = document.getElementById("name-input");
+var secBtns = [].slice.call(document.querySelectorAll(".sec-start"));
+function syncNameGate() {
+  var ok = nameInput.value.trim().length > 0;
+  secBtns.forEach(function (b) { b.disabled = !ok; });
+}
+nameInput.addEventListener("input", syncNameGate);
+nameInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter" && nameInput.value.trim()) secBtns[0].click();
+});
+
+function startSection(si) {
+  var typed = nameInput.value.trim();
+  if (!typed) { nameInput.focus(); return; }
+  ensureCtx();
+  studentName = typed;
+  var s = SECTIONS[si];
+  for (var i = s.start; i < s.end; i++) { answersLog[i] = null; }
+  elapsed[si] = 0;
+  sent[si] = false;
+  s.cards.forEach(function (title) {
+    Object.keys(CARD_AT).forEach(function (k) { if (CARD_AT[k] === title) delete cardsShown[k]; });
+  });
+  current = s.start;
+  curSec = si;
+  lastTick = Date.now();
+  saveState();
+  step();
+}
+secBtns.forEach(function (b) {
+  b.addEventListener("click", function () { startSection(parseInt(b.getAttribute("data-sec"), 10)); });
+});
+
+var savedState = loadState();
+function applySaved(s) {
+  studentName = s.name;
+  current = s.current;
+  answersLog = (s.log || []).slice(0, ALL.length);
+  while (answersLog.length < ALL.length) answersLog.push(null);
+  elapsed = s.elapsed || new Array(NSEC).fill(0);
+  while (elapsed.length < NSEC) elapsed.push(0);
+  sent = s.sent || new Array(NSEC).fill(false);
+  while (sent.length < NSEC) sent.push(false);
+  cardsShown = s.cards || {};
+  if (s.choices) {
+    ALL.forEach(function (q, i) { if (s.choices[i]) q.shuffled = s.choices[i]; });
+  }
+}
+if (savedState && savedState.log && savedState.log.some(function (l) { return !!l; })) {
+  var doneCnt = savedState.log.filter(function (l) { return !!l; }).length;
+  document.getElementById("resume-info").textContent =
+    savedState.name + " · " + doneCnt + "문제까지 푼 기록이 있어요. 이어서 풀까요?";
+  show("resume-card");
+} else {
+  syncNameGate();
+}
+document.getElementById("resume-btn").addEventListener("click", function () {
+  ensureCtx();
+  applySaved(savedState);
+  nameInput.value = studentName;
+  lastTick = Date.now();
+  curSec = secIndex(Math.min(current, ALL.length - 1));
+  var prevSec = current > 0 ? secIndex(current - 1) : -1;
+  if (prevSec >= 0 && current === SECTIONS[prevSec].end) {
+    showSectionResult(prevSec);
+  } else {
+    step();
+  }
+});
+document.getElementById("restart-btn").addEventListener("click", function () {
+  clearState();
+  answersLog = new Array(ALL.length).fill(null);
+  elapsed = new Array(NSEC).fill(0); sent = new Array(NSEC).fill(false); cardsShown = {}; current = 0;
+  nameInput.value = "";
+  syncNameGate();
+  show("start-card");
+});
+document.getElementById("pick-sec-btn").addEventListener("click", function () {
+  nameInput.value = studentName;
+  syncNameGate();
+  show("start-card");
+});
+
+/* ══════ 문제 표시 ══════ */
+var CIRCLED = ["①", "②", "③", "④"];
+function showQuestion() {
+  var q = ALL[current];
+  var si = secIndex(current);
+  curSec = si;
+  var sec = SECTIONS[si];
+  document.getElementById("prog-num").textContent =
+    sec.name.split(" · ")[0] + "  ·  " + (current - sec.start + 1) + " / " + (sec.end - sec.start);
+  document.getElementById("prog-pct").textContent = "전체 " + Math.round(current / ALL.length * 100) + "%";
+  document.getElementById("bar-fill").style.width = ((current - sec.start) / (sec.end - sec.start) * 100) + "%";
+  document.getElementById("srctag").textContent = q.src;
+  document.getElementById("tipinner").innerHTML = "<b>" + q.src + "</b><br>" + (TIPS[q.src] || "");
+  document.getElementById("tipbox").open = false;
+  document.getElementById("qtext").innerHTML = "Q" + (current + 1) + ". " + q.q;
+  var box = document.getElementById("choices");
+  box.innerHTML = "";
+  var sayBtn = document.getElementById("say-btn");
+  var sayText = q.say === "-" ? "" : (q.say || (isEnglish(q.answer) ? q.answer : ""));
+  sayBtn.classList.toggle("hidden", !(speechOK && sayText));
+  sayBtn.onclick = function () { speak(sayText); };
+  q.shuffled.forEach(function (c, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "choice";
+    b.innerHTML = '<span class="num">' + CIRCLED[i] + "</span>" + c;
+    if (speechOK && q.spk !== false && isEnglish(c)) {
+      var sp = document.createElement("span");
+      sp.className = "say";
+      sp.textContent = "🔊";
+      sp.title = "발음 듣기";
+      sp.addEventListener("click", function (ev) { ev.stopPropagation(); ev.preventDefault(); speak(c); });
+      b.appendChild(sp);
+    }
+    b.addEventListener("click", function () { pick(c); });
+    box.appendChild(b);
+  });
+  lastTick = Date.now();
+}
+
+document.addEventListener("keydown", function (e) {
+  if (document.getElementById("quiz-card").classList.contains("hidden")) return;
+  var q = ALL[current];
+  if (!q) return;
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= q.shuffled.length) pick(q.shuffled[n - 1]);
+});
+
+var locked = false;
+function pick(choice) {
+  if (locked) return; locked = true;
+  var q = ALL[current];
+  var si = secIndex(current);
+  var ok = (choice === q.answer);
+  speak(q.say === "-" ? "" : (q.say || (isEnglish(q.answer) ? q.answer : "")));
+  answersLog[current] = { no: current + 1, ok: ok, chosen: choice, answer: q.answer };
+  elapsed[si] += Math.min(180, Math.round((Date.now() - lastTick) / 1000));
+  current++;
+  saveState();
+  setTimeout(function () {
+    locked = false;
+    if (current === SECTIONS[si].end) showSectionResult(si);
+    else step();
+  }, 250);
+}
+
+/* ══════ 영역 결과 ══════ */
+function secStats(si) {
+  var sec = SECTIONS[si];
+  var slice = answersLog.slice(sec.start, sec.end).filter(function (l) { return !!l; });
+  var score = slice.filter(function (l) { return l.ok; }).length;
+  var wrong = slice.filter(function (l) { return !l.ok; }).map(function (l) { return l.no; });
+  return { slice: slice, score: score, total: sec.end - sec.start, wrong: wrong };
+}
+function sectionMsg(si) {
+  var st = secStats(si);
+  return "[영핏 기초 탄탄 오답 클리닉 " + String(si + 1) + "영역 결과]\n학생: " + studentName +
+         "\n영역: " + SECTIONS[si].name +
+         "\n점수: " + st.score + "/" + st.total +
+         "\n풀이 시간: " + Math.max(1, Math.round(elapsed[si] / 60)) + "분" +
+         "\n틀린 문항: " + (st.wrong.length ? st.wrong.join(", ") : "없음 👏") +
+         "\n- 영핏 지나티처";
+}
+function totalMsg() {
+  var parts = SECTIONS.map(function (s, si) {
+    var st = secStats(si);
+    return String(si + 1) + "영역 " + st.score + "/" + st.total;
+  });
+  var done = answersLog.filter(function (l) { return !!l; });
+  var totalScore = done.filter(function (l) { return l.ok; }).length;
+  var allWrong = done.filter(function (l) { return !l.ok; }).map(function (l) { return l.no; });
+  return "[영핏 기초 탄탄 오답 클리닉 최종 결과]\n학생: " + studentName +
+         "\n퀴즈: 이서연 리딩 Unit7·8·9 + DAY17 + 받아쓰기 04회 클리닉 (" + ALL.length + "문항)" +
+         "\n" + parts.join(" / ") +
+         "\n총점: " + totalScore + "/" + ALL.length +
+         "\n틀린 문항: " + (allWrong.length ? allWrong.join(", ") : "없음 👏") +
+         "\n- 영핏 지나티처";
+}
+function copyText(btn, text, doneLabel) {
+  navigator.clipboard.writeText(text).then(function () {
+    btn.textContent = doneLabel;
+  }).catch(function () {
+    prompt("아래 내용을 길게 눌러 복사하세요", text);
+  });
+}
+function plain(s) { return String(s).replace(/<[^>]*>/g, ""); }
+
+function showSectionResult(si) {
+  var st = secStats(si);
+  var allDone = firstUndoneSec() === -1;
+  document.getElementById("sec-result-title").textContent =
+    allDone ? "모든 영역 완료! 정말 수고했어요 🎉" : String(si + 1) + "영역 완료! 잘했어요 👏";
+  document.getElementById("sec-score").textContent = st.score + " / " + st.total;
+  document.getElementById("sec-wrong").textContent =
+    st.wrong.length ? "틀린 문항: " + st.wrong.join(", ") : "이 영역 전부 정답! 최고예요! 🏆";
+
+  var copyBtn = document.getElementById("sec-copy-btn");
+  copyBtn.textContent = String(si + 1) + "영역 결과 복사 (카톡용)";
+  copyBtn.onclick = function () { copyText(copyBtn, sectionMsg(si), "복사 완료! 카톡에 붙여넣기 하세요 ✓"); };
+
+  var nextBtn = document.getElementById("next-sec-btn");
+  var nextSi = firstUndoneSec();
+  if (allDone) {
+    nextBtn.classList.add("hidden");
+    var totalScore = answersLog.filter(function (l) { return l && l.ok; }).length;
+    document.getElementById("total-block").classList.remove("hidden");
+    document.getElementById("total-score").textContent = totalScore + " / " + ALL.length;
+    document.getElementById("total-detail").textContent =
+      SECTIONS.map(function (s, idx) { var t = secStats(idx); return String(idx + 1) + "영역 " + t.score + "/" + t.total; }).join("  ·  ");
+    var totalBtn = document.getElementById("total-copy-btn");
+    totalBtn.onclick = function () { copyText(totalBtn, totalMsg(), "복사 완료! 카톡에 붙여넣기 하세요 ✓"); };
+  } else {
+    nextBtn.classList.remove("hidden");
+    document.getElementById("total-block").classList.add("hidden");
+    nextBtn.textContent = "쉬었다가 " + String(nextSi + 1) + "영역 카드 보기 →";
+    nextBtn.onclick = function () { current = SECTIONS[nextSi].start; curSec = nextSi; lastTick = Date.now(); saveState(); step(); };
+  }
+
+  var expBox = document.getElementById("sec-explanations");
+  expBox.innerHTML = "";
+  st.slice.forEach(function (log) {
+    var q = ALL[log.no - 1];
+    var d = document.createElement("div");
+    d.className = "exp" + (log.ok ? "" : " wrong");
+    var ansLine = log.ok ? "" : '<span class="ans-line">내가 고른 답: ' + plain(log.chosen) + " → 정답: " + plain(q.answer) + "</span>";
+    d.innerHTML = '<div class="exp-head"><b>Q' + log.no + " " +
+      (log.ok ? "정답! ✓" : "오답 - 다시 보기") + "</b></div>" + ansLine + q.exp;
+    expBox.appendChild(d);
+  });
+
+  if (!sent[si]) {
+    sent[si] = true;
+    saveState();
+    engfitSubmit({
+      quizId: "clinic-lsy-1002-p" + (si + 1),
+      quizTitle: "이서연 기초 탄탄 클리닉 1002 " + String(si + 1) + "영역",
+      student: studentName,
+      score: st.score,
+      total: st.total,
+      wrong: st.wrong,
+      durationSec: elapsed[si],
+      detail: st.slice
+    });
+  }
+  show("sec-result-card");
+  setTimeout(playFanfare, 180);
+}
+
+</script>
+</body>
+</html>
